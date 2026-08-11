@@ -31,7 +31,7 @@ function LoginCliente() {
   const enter = (guest: boolean) => {
     set("role", "cliente");
     set("guest", guest);
-    set("userName", guest ? "Visitante" : mode === "signup" ? name : email.split("@")[0]);
+    set("userName", guest ? "Visitante" : mode === "signup" ? name : (email.split("@")[0] ?? "Cliente"));
     toast.success(guest ? "Entrando como visitante" : "Bem-vindo ao PreçoRadar!");
     navigate({ to: "/cliente" });
   };

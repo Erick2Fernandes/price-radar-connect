@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/mercado/comparar")({
-  validateSearch: (s: Record<string, unknown>) => ({ p: typeof s.p === "string" ? s.p : "p1" }),
+  validateSearch: (s: Record<string, unknown>) => ({ p: typeof s["p"] === "string" ? (s["p"] as string) : "p1" }),
   head: () => ({
     meta: [
       { title: "Comparar mercado — PreçoRadar" },
@@ -32,7 +32,7 @@ function Comparar() {
   const [analysis, setAnalysis] = useState(false);
   const [applied, setApplied] = useState(false);
 
-  const product = productById(p) ?? products[0];
+  const product = (productById(p) ?? products[0])!;
   const mine = myOffer(product.id)!;
   const stats = priceStats(product.id);
   const competitors = offersForProduct(product.id);

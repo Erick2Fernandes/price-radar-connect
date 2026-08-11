@@ -98,7 +98,7 @@ function buildOffers(): Offer[] {
     for (const m of [...markets, { id: MY_MARKET_ID } as Market]) {
       const r = rnd(p.id + m.id);
       const price = Math.round((base * (0.92 + r * 0.22)) * 100) / 100;
-      let status = statusPool[hash(m.id + p.id) % statusPool.length];
+      let status: Availability = statusPool[hash(m.id + p.id) % statusPool.length]!;
       if (m.id === MY_MARKET_ID && status === "not_carried" && hash(p.id) % 2 === 0) status = "available";
       const stock = status === "out" ? 0 : status === "low" ? 2 + (hash(p.id + m.id) % 6) : status === "not_carried" ? 0 : 20 + (hash(m.id + p.id) % 130);
       out.push({

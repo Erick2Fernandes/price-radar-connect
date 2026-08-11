@@ -7,7 +7,7 @@ import { brl, isSellable, markets, offersForProduct, priceStats, searchProducts 
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/cliente/buscar")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? (s["q"] as string) : "" }),
   head: () => ({
     meta: [
       { title: "Buscar produtos — PreçoRadar" },

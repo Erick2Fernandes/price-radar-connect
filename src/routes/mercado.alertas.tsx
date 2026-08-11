@@ -25,7 +25,7 @@ function Alertas() {
       const best = offersForProduct(o.productId).filter((x) => isSellable(x.status)).sort((a, b) => a.price - b.price)[0];
       return { o, s, best, diff: s.min ? ((o.price - s.min) / s.min) * 100 : 0 };
     })
-    .filter((r) => r.diff > 6)
+    .filter((r) => r.best && r.diff > 6)
     .sort((a, b) => b.diff - a.diff)
     .slice(0, 6);
 
@@ -54,6 +54,7 @@ function Alertas() {
 
       <div className="space-y-3">
         {price.map(({ o, best, diff }) => {
+          if (!best) return null;
           const p = productById(o.productId)!;
           return (
             <article key={o.productId} className="pr-card p-5">
