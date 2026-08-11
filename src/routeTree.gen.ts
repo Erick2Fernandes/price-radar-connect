@@ -25,9 +25,14 @@ import { Route as EntrarMercadoRouteImport } from './routes/entrar.mercado'
 import { Route as MercadoIndexRouteImport } from './routes/mercado.index'
 import { Route as MercadoAlertasRouteImport } from './routes/mercado.alertas'
 import { Route as MercadoCatalogoRouteImport } from './routes/mercado.catalogo'
+import { Route as MercadoCestaRouteImport } from './routes/mercado.cesta'
 import { Route as MercadoCompararRouteImport } from './routes/mercado.comparar'
 import { Route as MercadoConcorrentesRouteImport } from './routes/mercado.concorrentes'
+import { Route as MercadoConfiguracoesRouteImport } from './routes/mercado.configuracoes'
+import { Route as MercadoExpoagroRouteImport } from './routes/mercado.expoagro'
 import { Route as MercadoImportarRouteImport } from './routes/mercado.importar'
+import { Route as MercadoMeuMercadoRouteImport } from './routes/mercado.meu-mercado'
+import { Route as MercadoOportunidadesRouteImport } from './routes/mercado.oportunidades'
 import { Route as ClienteMercadosIndexRouteImport } from './routes/cliente.mercados.index'
 import { Route as ClienteMercadosMarketIdRouteImport } from './routes/cliente.mercados.$marketId'
 import { Route as ClienteProdutoProductIdRouteImport } from './routes/cliente.produto.$productId'
@@ -112,6 +117,11 @@ const MercadoCatalogoRoute = MercadoCatalogoRouteImport.update({
   path: '/catalogo',
   getParentRoute: () => MercadoRoute,
 } as any)
+const MercadoCestaRoute = MercadoCestaRouteImport.update({
+  id: '/cesta',
+  path: '/cesta',
+  getParentRoute: () => MercadoRoute,
+} as any)
 const MercadoCompararRoute = MercadoCompararRouteImport.update({
   id: '/comparar',
   path: '/comparar',
@@ -122,9 +132,29 @@ const MercadoConcorrentesRoute = MercadoConcorrentesRouteImport.update({
   path: '/concorrentes',
   getParentRoute: () => MercadoRoute,
 } as any)
+const MercadoConfiguracoesRoute = MercadoConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoExpoagroRoute = MercadoExpoagroRouteImport.update({
+  id: '/expoagro',
+  path: '/expoagro',
+  getParentRoute: () => MercadoRoute,
+} as any)
 const MercadoImportarRoute = MercadoImportarRouteImport.update({
   id: '/importar',
   path: '/importar',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoMeuMercadoRoute = MercadoMeuMercadoRouteImport.update({
+  id: '/meu-mercado',
+  path: '/meu-mercado',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoOportunidadesRoute = MercadoOportunidadesRouteImport.update({
+  id: '/oportunidades',
+  path: '/oportunidades',
   getParentRoute: () => MercadoRoute,
 } as any)
 const ClienteMercadosIndexRoute = ClienteMercadosIndexRouteImport.update({
@@ -158,9 +188,14 @@ export interface FileRoutesByFullPath {
   '/entrar/mercado': typeof EntrarMercadoRoute
   '/mercado/alertas': typeof MercadoAlertasRoute
   '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/cesta': typeof MercadoCestaRoute
   '/mercado/comparar': typeof MercadoCompararRoute
   '/mercado/concorrentes': typeof MercadoConcorrentesRoute
+  '/mercado/configuracoes': typeof MercadoConfiguracoesRoute
+  '/mercado/expoagro': typeof MercadoExpoagroRoute
   '/mercado/importar': typeof MercadoImportarRoute
+  '/mercado/meu-mercado': typeof MercadoMeuMercadoRoute
+  '/mercado/oportunidades': typeof MercadoOportunidadesRoute
   '/cliente/': typeof ClienteIndexRoute
   '/mercado/': typeof MercadoIndexRoute
   '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
@@ -179,9 +214,14 @@ export interface FileRoutesByTo {
   '/entrar/mercado': typeof EntrarMercadoRoute
   '/mercado/alertas': typeof MercadoAlertasRoute
   '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/cesta': typeof MercadoCestaRoute
   '/mercado/comparar': typeof MercadoCompararRoute
   '/mercado/concorrentes': typeof MercadoConcorrentesRoute
+  '/mercado/configuracoes': typeof MercadoConfiguracoesRoute
+  '/mercado/expoagro': typeof MercadoExpoagroRoute
   '/mercado/importar': typeof MercadoImportarRoute
+  '/mercado/meu-mercado': typeof MercadoMeuMercadoRoute
+  '/mercado/oportunidades': typeof MercadoOportunidadesRoute
   '/cliente': typeof ClienteIndexRoute
   '/mercado': typeof MercadoIndexRoute
   '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
@@ -204,9 +244,14 @@ export interface FileRoutesById {
   '/entrar/mercado': typeof EntrarMercadoRoute
   '/mercado/alertas': typeof MercadoAlertasRoute
   '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/cesta': typeof MercadoCestaRoute
   '/mercado/comparar': typeof MercadoCompararRoute
   '/mercado/concorrentes': typeof MercadoConcorrentesRoute
+  '/mercado/configuracoes': typeof MercadoConfiguracoesRoute
+  '/mercado/expoagro': typeof MercadoExpoagroRoute
   '/mercado/importar': typeof MercadoImportarRoute
+  '/mercado/meu-mercado': typeof MercadoMeuMercadoRoute
+  '/mercado/oportunidades': typeof MercadoOportunidadesRoute
   '/cliente/': typeof ClienteIndexRoute
   '/mercado/': typeof MercadoIndexRoute
   '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
@@ -230,9 +275,14 @@ export interface FileRouteTypes {
     | '/entrar/mercado'
     | '/mercado/alertas'
     | '/mercado/catalogo'
+    | '/mercado/cesta'
     | '/mercado/comparar'
     | '/mercado/concorrentes'
+    | '/mercado/configuracoes'
+    | '/mercado/expoagro'
     | '/mercado/importar'
+    | '/mercado/meu-mercado'
+    | '/mercado/oportunidades'
     | '/cliente/'
     | '/mercado/'
     | '/cliente/mercados/$marketId'
@@ -251,9 +301,14 @@ export interface FileRouteTypes {
     | '/entrar/mercado'
     | '/mercado/alertas'
     | '/mercado/catalogo'
+    | '/mercado/cesta'
     | '/mercado/comparar'
     | '/mercado/concorrentes'
+    | '/mercado/configuracoes'
+    | '/mercado/expoagro'
     | '/mercado/importar'
+    | '/mercado/meu-mercado'
+    | '/mercado/oportunidades'
     | '/cliente'
     | '/mercado'
     | '/cliente/mercados/$marketId'
@@ -275,9 +330,14 @@ export interface FileRouteTypes {
     | '/entrar/mercado'
     | '/mercado/alertas'
     | '/mercado/catalogo'
+    | '/mercado/cesta'
     | '/mercado/comparar'
     | '/mercado/concorrentes'
+    | '/mercado/configuracoes'
+    | '/mercado/expoagro'
     | '/mercado/importar'
+    | '/mercado/meu-mercado'
+    | '/mercado/oportunidades'
     | '/cliente/'
     | '/mercado/'
     | '/cliente/mercados/$marketId'
@@ -407,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MercadoCatalogoRouteImport
       parentRoute: typeof MercadoRoute
     }
+    '/mercado/cesta': {
+      id: '/mercado/cesta'
+      path: '/cesta'
+      fullPath: '/mercado/cesta'
+      preLoaderRoute: typeof MercadoCestaRouteImport
+      parentRoute: typeof MercadoRoute
+    }
     '/mercado/comparar': {
       id: '/mercado/comparar'
       path: '/comparar'
@@ -421,11 +488,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MercadoConcorrentesRouteImport
       parentRoute: typeof MercadoRoute
     }
+    '/mercado/configuracoes': {
+      id: '/mercado/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/mercado/configuracoes'
+      preLoaderRoute: typeof MercadoConfiguracoesRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/expoagro': {
+      id: '/mercado/expoagro'
+      path: '/expoagro'
+      fullPath: '/mercado/expoagro'
+      preLoaderRoute: typeof MercadoExpoagroRouteImport
+      parentRoute: typeof MercadoRoute
+    }
     '/mercado/importar': {
       id: '/mercado/importar'
       path: '/importar'
       fullPath: '/mercado/importar'
       preLoaderRoute: typeof MercadoImportarRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/meu-mercado': {
+      id: '/mercado/meu-mercado'
+      path: '/meu-mercado'
+      fullPath: '/mercado/meu-mercado'
+      preLoaderRoute: typeof MercadoMeuMercadoRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/oportunidades': {
+      id: '/mercado/oportunidades'
+      path: '/oportunidades'
+      fullPath: '/mercado/oportunidades'
+      preLoaderRoute: typeof MercadoOportunidadesRouteImport
       parentRoute: typeof MercadoRoute
     }
     '/cliente/mercados/': {
@@ -496,18 +591,28 @@ const ClienteRouteWithChildren =
 interface MercadoRouteChildren {
   MercadoAlertasRoute: typeof MercadoAlertasRoute
   MercadoCatalogoRoute: typeof MercadoCatalogoRoute
+  MercadoCestaRoute: typeof MercadoCestaRoute
   MercadoCompararRoute: typeof MercadoCompararRoute
   MercadoConcorrentesRoute: typeof MercadoConcorrentesRoute
+  MercadoConfiguracoesRoute: typeof MercadoConfiguracoesRoute
+  MercadoExpoagroRoute: typeof MercadoExpoagroRoute
   MercadoImportarRoute: typeof MercadoImportarRoute
+  MercadoMeuMercadoRoute: typeof MercadoMeuMercadoRoute
+  MercadoOportunidadesRoute: typeof MercadoOportunidadesRoute
   MercadoIndexRoute: typeof MercadoIndexRoute
 }
 
 const MercadoRouteChildren: MercadoRouteChildren = {
   MercadoAlertasRoute: MercadoAlertasRoute,
   MercadoCatalogoRoute: MercadoCatalogoRoute,
+  MercadoCestaRoute: MercadoCestaRoute,
   MercadoCompararRoute: MercadoCompararRoute,
   MercadoConcorrentesRoute: MercadoConcorrentesRoute,
+  MercadoConfiguracoesRoute: MercadoConfiguracoesRoute,
+  MercadoExpoagroRoute: MercadoExpoagroRoute,
   MercadoImportarRoute: MercadoImportarRoute,
+  MercadoMeuMercadoRoute: MercadoMeuMercadoRoute,
+  MercadoOportunidadesRoute: MercadoOportunidadesRoute,
   MercadoIndexRoute: MercadoIndexRoute,
 }
 
@@ -524,13 +629,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
