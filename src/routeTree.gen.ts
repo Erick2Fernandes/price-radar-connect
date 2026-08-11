@@ -10,33 +10,263 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClienteRouteImport } from './routes/cliente'
+import { Route as MercadoRouteImport } from './routes/mercado'
+import { Route as ClienteIndexRouteImport } from './routes/cliente.index'
+import { Route as ClienteBuscarRouteImport } from './routes/cliente.buscar'
+import { Route as ClienteContaRouteImport } from './routes/cliente.conta'
+import { Route as ClienteFavoritosRouteImport } from './routes/cliente.favoritos'
+import { Route as ClienteListaRouteImport } from './routes/cliente.lista'
+import { Route as ClienteMercadosRouteImport } from './routes/cliente.mercados'
+import { Route as ClienteOportunidadesRouteImport } from './routes/cliente.oportunidades'
+import { Route as ClienteProximosRouteImport } from './routes/cliente.proximos'
+import { Route as EntrarClienteRouteImport } from './routes/entrar.cliente'
+import { Route as EntrarMercadoRouteImport } from './routes/entrar.mercado'
+import { Route as MercadoIndexRouteImport } from './routes/mercado.index'
+import { Route as MercadoCatalogoRouteImport } from './routes/mercado.catalogo'
+import { Route as MercadoCompararRouteImport } from './routes/mercado.comparar'
+import { Route as MercadoImportarRouteImport } from './routes/mercado.importar'
+import { Route as ClienteMercadosIndexRouteImport } from './routes/cliente.mercados.index'
+import { Route as ClienteMercadosMarketIdRouteImport } from './routes/cliente.mercados.$marketId'
+import { Route as ClienteProdutoProductIdRouteImport } from './routes/cliente.produto.$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClienteRoute = ClienteRouteImport.update({
+  id: '/cliente',
+  path: '/cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MercadoRoute = MercadoRouteImport.update({
+  id: '/mercado',
+  path: '/mercado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClienteIndexRoute = ClienteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteBuscarRoute = ClienteBuscarRouteImport.update({
+  id: '/buscar',
+  path: '/buscar',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteContaRoute = ClienteContaRouteImport.update({
+  id: '/conta',
+  path: '/conta',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteFavoritosRoute = ClienteFavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteListaRoute = ClienteListaRouteImport.update({
+  id: '/lista',
+  path: '/lista',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteMercadosRoute = ClienteMercadosRouteImport.update({
+  id: '/mercados',
+  path: '/mercados',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteOportunidadesRoute = ClienteOportunidadesRouteImport.update({
+  id: '/oportunidades',
+  path: '/oportunidades',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const ClienteProximosRoute = ClienteProximosRouteImport.update({
+  id: '/proximos',
+  path: '/proximos',
+  getParentRoute: () => ClienteRoute,
+} as any)
+const EntrarClienteRoute = EntrarClienteRouteImport.update({
+  id: '/entrar/cliente',
+  path: '/entrar/cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarMercadoRoute = EntrarMercadoRouteImport.update({
+  id: '/entrar/mercado',
+  path: '/entrar/mercado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MercadoIndexRoute = MercadoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoCatalogoRoute = MercadoCatalogoRouteImport.update({
+  id: '/catalogo',
+  path: '/catalogo',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoCompararRoute = MercadoCompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const MercadoImportarRoute = MercadoImportarRouteImport.update({
+  id: '/importar',
+  path: '/importar',
+  getParentRoute: () => MercadoRoute,
+} as any)
+const ClienteMercadosIndexRoute = ClienteMercadosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClienteMercadosRoute,
+} as any)
+const ClienteMercadosMarketIdRoute = ClienteMercadosMarketIdRouteImport.update({
+  id: '/$marketId',
+  path: '/$marketId',
+  getParentRoute: () => ClienteMercadosRoute,
+} as any)
+const ClienteProdutoProductIdRoute = ClienteProdutoProductIdRouteImport.update({
+  id: '/produto/$productId',
+  path: '/produto/$productId',
+  getParentRoute: () => ClienteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cliente': typeof ClienteRouteWithChildren
+  '/mercado': typeof MercadoRouteWithChildren
+  '/cliente/buscar': typeof ClienteBuscarRoute
+  '/cliente/conta': typeof ClienteContaRoute
+  '/cliente/favoritos': typeof ClienteFavoritosRoute
+  '/cliente/lista': typeof ClienteListaRoute
+  '/cliente/mercados': typeof ClienteMercadosRouteWithChildren
+  '/cliente/oportunidades': typeof ClienteOportunidadesRoute
+  '/cliente/proximos': typeof ClienteProximosRoute
+  '/entrar/cliente': typeof EntrarClienteRoute
+  '/entrar/mercado': typeof EntrarMercadoRoute
+  '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/comparar': typeof MercadoCompararRoute
+  '/mercado/importar': typeof MercadoImportarRoute
+  '/cliente/': typeof ClienteIndexRoute
+  '/mercado/': typeof MercadoIndexRoute
+  '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
+  '/cliente/produto/$productId': typeof ClienteProdutoProductIdRoute
+  '/cliente/mercados/': typeof ClienteMercadosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cliente/buscar': typeof ClienteBuscarRoute
+  '/cliente/conta': typeof ClienteContaRoute
+  '/cliente/favoritos': typeof ClienteFavoritosRoute
+  '/cliente/lista': typeof ClienteListaRoute
+  '/cliente/oportunidades': typeof ClienteOportunidadesRoute
+  '/cliente/proximos': typeof ClienteProximosRoute
+  '/entrar/cliente': typeof EntrarClienteRoute
+  '/entrar/mercado': typeof EntrarMercadoRoute
+  '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/comparar': typeof MercadoCompararRoute
+  '/mercado/importar': typeof MercadoImportarRoute
+  '/cliente': typeof ClienteIndexRoute
+  '/mercado': typeof MercadoIndexRoute
+  '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
+  '/cliente/produto/$productId': typeof ClienteProdutoProductIdRoute
+  '/cliente/mercados': typeof ClienteMercadosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cliente': typeof ClienteRouteWithChildren
+  '/mercado': typeof MercadoRouteWithChildren
+  '/cliente/buscar': typeof ClienteBuscarRoute
+  '/cliente/conta': typeof ClienteContaRoute
+  '/cliente/favoritos': typeof ClienteFavoritosRoute
+  '/cliente/lista': typeof ClienteListaRoute
+  '/cliente/mercados': typeof ClienteMercadosRouteWithChildren
+  '/cliente/oportunidades': typeof ClienteOportunidadesRoute
+  '/cliente/proximos': typeof ClienteProximosRoute
+  '/entrar/cliente': typeof EntrarClienteRoute
+  '/entrar/mercado': typeof EntrarMercadoRoute
+  '/mercado/catalogo': typeof MercadoCatalogoRoute
+  '/mercado/comparar': typeof MercadoCompararRoute
+  '/mercado/importar': typeof MercadoImportarRoute
+  '/cliente/': typeof ClienteIndexRoute
+  '/mercado/': typeof MercadoIndexRoute
+  '/cliente/mercados/$marketId': typeof ClienteMercadosMarketIdRoute
+  '/cliente/produto/$productId': typeof ClienteProdutoProductIdRoute
+  '/cliente/mercados/': typeof ClienteMercadosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cliente'
+    | '/mercado'
+    | '/cliente/buscar'
+    | '/cliente/conta'
+    | '/cliente/favoritos'
+    | '/cliente/lista'
+    | '/cliente/mercados'
+    | '/cliente/oportunidades'
+    | '/cliente/proximos'
+    | '/entrar/cliente'
+    | '/entrar/mercado'
+    | '/mercado/catalogo'
+    | '/mercado/comparar'
+    | '/mercado/importar'
+    | '/cliente/'
+    | '/mercado/'
+    | '/cliente/mercados/$marketId'
+    | '/cliente/produto/$productId'
+    | '/cliente/mercados/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cliente/buscar'
+    | '/cliente/conta'
+    | '/cliente/favoritos'
+    | '/cliente/lista'
+    | '/cliente/oportunidades'
+    | '/cliente/proximos'
+    | '/entrar/cliente'
+    | '/entrar/mercado'
+    | '/mercado/catalogo'
+    | '/mercado/comparar'
+    | '/mercado/importar'
+    | '/cliente'
+    | '/mercado'
+    | '/cliente/mercados/$marketId'
+    | '/cliente/produto/$productId'
+    | '/cliente/mercados'
+  id:
+    | '__root__'
+    | '/'
+    | '/cliente'
+    | '/mercado'
+    | '/cliente/buscar'
+    | '/cliente/conta'
+    | '/cliente/favoritos'
+    | '/cliente/lista'
+    | '/cliente/mercados'
+    | '/cliente/oportunidades'
+    | '/cliente/proximos'
+    | '/entrar/cliente'
+    | '/entrar/mercado'
+    | '/mercado/catalogo'
+    | '/mercado/comparar'
+    | '/mercado/importar'
+    | '/cliente/'
+    | '/mercado/'
+    | '/cliente/mercados/$marketId'
+    | '/cliente/produto/$productId'
+    | '/cliente/mercados/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClienteRoute: typeof ClienteRouteWithChildren
+  MercadoRoute: typeof MercadoRouteWithChildren
+  EntrarClienteRoute: typeof EntrarClienteRoute
+  EntrarMercadoRoute: typeof EntrarMercadoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +278,207 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cliente': {
+      id: '/cliente'
+      path: '/cliente'
+      fullPath: '/cliente'
+      preLoaderRoute: typeof ClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercado': {
+      id: '/mercado'
+      path: '/mercado'
+      fullPath: '/mercado'
+      preLoaderRoute: typeof MercadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cliente/': {
+      id: '/cliente/'
+      path: '/'
+      fullPath: '/cliente/'
+      preLoaderRoute: typeof ClienteIndexRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/buscar': {
+      id: '/cliente/buscar'
+      path: '/buscar'
+      fullPath: '/cliente/buscar'
+      preLoaderRoute: typeof ClienteBuscarRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/conta': {
+      id: '/cliente/conta'
+      path: '/conta'
+      fullPath: '/cliente/conta'
+      preLoaderRoute: typeof ClienteContaRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/favoritos': {
+      id: '/cliente/favoritos'
+      path: '/favoritos'
+      fullPath: '/cliente/favoritos'
+      preLoaderRoute: typeof ClienteFavoritosRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/lista': {
+      id: '/cliente/lista'
+      path: '/lista'
+      fullPath: '/cliente/lista'
+      preLoaderRoute: typeof ClienteListaRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/mercados': {
+      id: '/cliente/mercados'
+      path: '/mercados'
+      fullPath: '/cliente/mercados'
+      preLoaderRoute: typeof ClienteMercadosRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/oportunidades': {
+      id: '/cliente/oportunidades'
+      path: '/oportunidades'
+      fullPath: '/cliente/oportunidades'
+      preLoaderRoute: typeof ClienteOportunidadesRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/cliente/proximos': {
+      id: '/cliente/proximos'
+      path: '/proximos'
+      fullPath: '/cliente/proximos'
+      preLoaderRoute: typeof ClienteProximosRouteImport
+      parentRoute: typeof ClienteRoute
+    }
+    '/entrar/cliente': {
+      id: '/entrar/cliente'
+      path: '/entrar/cliente'
+      fullPath: '/entrar/cliente'
+      preLoaderRoute: typeof EntrarClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar/mercado': {
+      id: '/entrar/mercado'
+      path: '/entrar/mercado'
+      fullPath: '/entrar/mercado'
+      preLoaderRoute: typeof EntrarMercadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercado/': {
+      id: '/mercado/'
+      path: '/'
+      fullPath: '/mercado/'
+      preLoaderRoute: typeof MercadoIndexRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/catalogo': {
+      id: '/mercado/catalogo'
+      path: '/catalogo'
+      fullPath: '/mercado/catalogo'
+      preLoaderRoute: typeof MercadoCatalogoRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/comparar': {
+      id: '/mercado/comparar'
+      path: '/comparar'
+      fullPath: '/mercado/comparar'
+      preLoaderRoute: typeof MercadoCompararRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/mercado/importar': {
+      id: '/mercado/importar'
+      path: '/importar'
+      fullPath: '/mercado/importar'
+      preLoaderRoute: typeof MercadoImportarRouteImport
+      parentRoute: typeof MercadoRoute
+    }
+    '/cliente/mercados/': {
+      id: '/cliente/mercados/'
+      path: '/'
+      fullPath: '/cliente/mercados/'
+      preLoaderRoute: typeof ClienteMercadosIndexRouteImport
+      parentRoute: typeof ClienteMercadosRoute
+    }
+    '/cliente/mercados/$marketId': {
+      id: '/cliente/mercados/$marketId'
+      path: '/$marketId'
+      fullPath: '/cliente/mercados/$marketId'
+      preLoaderRoute: typeof ClienteMercadosMarketIdRouteImport
+      parentRoute: typeof ClienteMercadosRoute
+    }
+    '/cliente/produto/$productId': {
+      id: '/cliente/produto/$productId'
+      path: '/produto/$productId'
+      fullPath: '/cliente/produto/$productId'
+      preLoaderRoute: typeof ClienteProdutoProductIdRouteImport
+      parentRoute: typeof ClienteRoute
+    }
   }
 }
 
+interface ClienteMercadosRouteChildren {
+  ClienteMercadosMarketIdRoute: typeof ClienteMercadosMarketIdRoute
+  ClienteMercadosIndexRoute: typeof ClienteMercadosIndexRoute
+}
+
+const ClienteMercadosRouteChildren: ClienteMercadosRouteChildren = {
+  ClienteMercadosMarketIdRoute: ClienteMercadosMarketIdRoute,
+  ClienteMercadosIndexRoute: ClienteMercadosIndexRoute,
+}
+
+const ClienteMercadosRouteWithChildren = ClienteMercadosRoute._addFileChildren(
+  ClienteMercadosRouteChildren,
+)
+
+interface ClienteRouteChildren {
+  ClienteBuscarRoute: typeof ClienteBuscarRoute
+  ClienteContaRoute: typeof ClienteContaRoute
+  ClienteFavoritosRoute: typeof ClienteFavoritosRoute
+  ClienteListaRoute: typeof ClienteListaRoute
+  ClienteMercadosRoute: typeof ClienteMercadosRouteWithChildren
+  ClienteOportunidadesRoute: typeof ClienteOportunidadesRoute
+  ClienteProximosRoute: typeof ClienteProximosRoute
+  ClienteIndexRoute: typeof ClienteIndexRoute
+  ClienteProdutoProductIdRoute: typeof ClienteProdutoProductIdRoute
+}
+
+const ClienteRouteChildren: ClienteRouteChildren = {
+  ClienteBuscarRoute: ClienteBuscarRoute,
+  ClienteContaRoute: ClienteContaRoute,
+  ClienteFavoritosRoute: ClienteFavoritosRoute,
+  ClienteListaRoute: ClienteListaRoute,
+  ClienteMercadosRoute: ClienteMercadosRouteWithChildren,
+  ClienteOportunidadesRoute: ClienteOportunidadesRoute,
+  ClienteProximosRoute: ClienteProximosRoute,
+  ClienteIndexRoute: ClienteIndexRoute,
+  ClienteProdutoProductIdRoute: ClienteProdutoProductIdRoute,
+}
+
+const ClienteRouteWithChildren =
+  ClienteRoute._addFileChildren(ClienteRouteChildren)
+
+interface MercadoRouteChildren {
+  MercadoCatalogoRoute: typeof MercadoCatalogoRoute
+  MercadoCompararRoute: typeof MercadoCompararRoute
+  MercadoImportarRoute: typeof MercadoImportarRoute
+  MercadoIndexRoute: typeof MercadoIndexRoute
+}
+
+const MercadoRouteChildren: MercadoRouteChildren = {
+  MercadoCatalogoRoute: MercadoCatalogoRoute,
+  MercadoCompararRoute: MercadoCompararRoute,
+  MercadoImportarRoute: MercadoImportarRoute,
+  MercadoIndexRoute: MercadoIndexRoute,
+}
+
+const MercadoRouteWithChildren =
+  MercadoRoute._addFileChildren(MercadoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClienteRoute: ClienteRouteWithChildren,
+  MercadoRoute: MercadoRouteWithChildren,
+  EntrarClienteRoute: EntrarClienteRoute,
+  EntrarMercadoRoute: EntrarMercadoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
