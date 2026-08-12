@@ -76,7 +76,7 @@ function DashboardMercado() {
           <AlertTriangle className="size-5 text-warning" />
           <h3 className="mt-3 font-bold">{acima || 12} produtos acima da média</h3>
           <p className="mt-1 text-sm text-muted-foreground">Revise preços para melhorar competitividade sem perder margem.</p>
-          <Button asChild size="sm" className="mt-4"><Link to="/mercado/comparar">Comparar agora</Link></Button>
+          <Button asChild size="sm" className="mt-4"><Link to="/mercado/comparar" search={{ p: "p1" }}>Comparar agora</Link></Button>
         </div>
         <div className="pr-card p-5">
           <Bell className="size-5 text-info" />
