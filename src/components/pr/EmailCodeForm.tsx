@@ -42,7 +42,7 @@ export function EmailCodeForm({
       await saveProfile(
         role === "mercado"
           ? { role, marketName: name || "Meu mercado" }
-          : { role, fullName: name || undefined },
+          : { role, fullName: name || (email.split("@")[0] ?? "Cliente") },
       );
       toast.success("Conta confirmada!");
       onAuthenticated(name || (email.split("@")[0] ?? "Usuário"));
