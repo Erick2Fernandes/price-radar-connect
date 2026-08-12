@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ClienteRouteImport } from './routes/cliente'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as MercadoRouteImport } from './routes/mercado'
 import { Route as ClienteIndexRouteImport } from './routes/cliente.index'
 import { Route as ClienteBuscarRouteImport } from './routes/cliente.buscar'
@@ -45,6 +46,11 @@ const IndexRoute = IndexRouteImport.update({
 const ClienteRoute = ClienteRouteImport.update({
   id: '/cliente',
   path: '/cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MercadoRoute = MercadoRouteImport.update({
@@ -176,6 +182,7 @@ const ClienteProdutoProductIdRoute = ClienteProdutoProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cliente': typeof ClienteRouteWithChildren
+  '/demo': typeof DemoRoute
   '/mercado': typeof MercadoRouteWithChildren
   '/cliente/buscar': typeof ClienteBuscarRoute
   '/cliente/conta': typeof ClienteContaRoute
@@ -204,6 +211,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/cliente/buscar': typeof ClienteBuscarRoute
   '/cliente/conta': typeof ClienteContaRoute
   '/cliente/favoritos': typeof ClienteFavoritosRoute
@@ -232,6 +240,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cliente': typeof ClienteRouteWithChildren
+  '/demo': typeof DemoRoute
   '/mercado': typeof MercadoRouteWithChildren
   '/cliente/buscar': typeof ClienteBuscarRoute
   '/cliente/conta': typeof ClienteContaRoute
@@ -263,6 +272,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cliente'
+    | '/demo'
     | '/mercado'
     | '/cliente/buscar'
     | '/cliente/conta'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/demo'
     | '/cliente/buscar'
     | '/cliente/conta'
     | '/cliente/favoritos'
@@ -318,6 +329,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cliente'
+    | '/demo'
     | '/mercado'
     | '/cliente/buscar'
     | '/cliente/conta'
@@ -348,6 +360,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClienteRoute: typeof ClienteRouteWithChildren
+  DemoRoute: typeof DemoRoute
   MercadoRoute: typeof MercadoRouteWithChildren
   EntrarClienteRoute: typeof EntrarClienteRoute
   EntrarMercadoRoute: typeof EntrarMercadoRoute
@@ -367,6 +380,13 @@ declare module '@tanstack/react-router' {
       path: '/cliente'
       fullPath: '/cliente'
       preLoaderRoute: typeof ClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mercado': {
@@ -622,6 +642,7 @@ const MercadoRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClienteRoute: ClienteRouteWithChildren,
+  DemoRoute: DemoRoute,
   MercadoRoute: MercadoRouteWithChildren,
   EntrarClienteRoute: EntrarClienteRoute,
   EntrarMercadoRoute: EntrarMercadoRoute,
@@ -629,13 +650,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

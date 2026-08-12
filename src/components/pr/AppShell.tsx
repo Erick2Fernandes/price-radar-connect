@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { MvpBadge } from "./MvpBadge";
+import { DemoBanner } from "./DemoBanner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -63,6 +64,7 @@ export function AppShell({ nav, topbar, children, footerNote }: {
 
       <div className="lg:pl-64">
         <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+          <DemoBanner />
           <div className="flex items-center gap-3 px-4 py-3">
             <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setOpen(true)} aria-label="Abrir menu">
               <Menu className="size-5" />
