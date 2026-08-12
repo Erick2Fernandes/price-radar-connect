@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BarChart3, Building2, LineChart, MapPin, ShieldCheck, ShoppingCart, Sparkles, Store, Users } from "lucide-react";
+import { ArrowRight, BarChart3, Building2, Clapperboard, LineChart, MapPin, ShieldCheck, ShoppingCart, Sparkles, Store, Users } from "lucide-react";
 import { Logo } from "@/components/pr/Logo";
 import { Button } from "@/components/ui/button";
 import { MvpBadge } from "@/components/pr/MvpBadge";
@@ -22,6 +22,7 @@ function Landing() {
       <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         <Logo />
         <div className="flex items-center gap-2">
+          <Button asChild variant="ghost" size="sm"><Link to="/demo">Ver demonstração</Link></Button>
           <Button asChild variant="ghost" size="sm"><Link to="/entrar/cliente">Cliente</Link></Button>
           <Button asChild size="sm"><Link to="/entrar/mercado">Sou mercado</Link></Button>
         </div>
@@ -42,14 +43,14 @@ function Landing() {
             onde comprar mais barato — e para entender como seu mercado está posicionado.
           </p>
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
             <article className="pr-card group p-7 text-left transition-shadow hover:shadow-lift">
               <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground">
                 <ShoppingCart className="size-6" />
               </span>
               <h2 className="mt-5 text-xl font-bold">👤 Sou cliente</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Compare preços, encontre produtos e descubra onde comprar mais barato.
+                Compare preços e descubra onde comprar.
               </p>
               <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
                 <li>• Busca de produtos em vários mercados</li>
@@ -67,7 +68,7 @@ function Landing() {
               </span>
               <h2 className="mt-5 text-xl font-bold">🏪 Sou mercado</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Monitore preços, acompanhe concorrentes e transforme dados em decisões.
+                Monitore preços, concorrentes e oportunidades.
               </p>
               <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
                 <li>• Catálogo próprio, estoque e disponibilidade</li>
@@ -76,6 +77,24 @@ function Landing() {
               </ul>
               <Button asChild variant="secondary" className="mt-6 w-full" size="lg">
                 <Link to="/entrar/mercado">Entrar como mercado <ArrowRight className="size-4" /></Link>
+              </Button>
+            </article>
+
+            <article className="pr-card group border-primary/40 p-7 text-left transition-shadow hover:shadow-lift">
+              <span className="grid size-12 place-items-center rounded-2xl bg-primary text-primary-foreground">
+                <Clapperboard className="size-6" />
+              </span>
+              <h2 className="mt-5 text-xl font-bold">🎬 Ver demonstração</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Explore o PreçoRadar com dados de exemplo.
+              </p>
+              <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
+                <li>• 5 mercados e 30+ produtos pré-carregados</li>
+                <li>• Preços, estoque e histórico simulados</li>
+                <li>• Sem cadastro: navegue por todos os fluxos</li>
+              </ul>
+              <Button asChild variant="outline" className="mt-6 w-full" size="lg">
+                <Link to="/demo">Começar demonstração <ArrowRight className="size-4" /></Link>
               </Button>
             </article>
           </div>

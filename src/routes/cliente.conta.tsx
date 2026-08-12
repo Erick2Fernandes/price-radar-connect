@@ -1,5 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, LogOut } from "lucide-react";
+import { Bell, LogOut, RotateCcw } from "lucide-react";
+import { toast } from "sonner";
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
+  AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -25,7 +30,7 @@ const notificacoes = [
 ];
 
 function Conta() {
-  const { userName, guest, alerts, removeAlert } = usePR();
+  const { userName, guest, demo, alerts, removeAlert, resetDemo } = usePR();
   return (
     <div className="space-y-6">
       <header>
@@ -65,6 +70,34 @@ function Conta() {
           {notificacoes.map((n) => <li key={n}>• {n}</li>)}
         </ul>
       </section>
+
+      {demo && (
+        <section className="pr-card p-6">
+          <h2 className="font-bold">Ambiente de demonstração</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Restaure a lista, favoritos e alertas para o estado original da demonstração.
+          </p>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline" className="mt-4 gap-2">
+                <RotateCcw className="size-4" /> Resetar ambiente de demonstração
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Resetar ambiente de demonstração</AlertDialogTitle>
+                <AlertDialogDescription>Todos os dados demonstrativos serão restaurados.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <AlertDialogAction onClick={() => { resetDemo(); toast.success("Ambiente de demonstração restaurado."); }}>
+                  Restaurar
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </section>
+      )}
 
       <Button asChild variant="outline"><Link to="/"><LogOut className="size-4" /> Sair</Link></Button>
     </div>
