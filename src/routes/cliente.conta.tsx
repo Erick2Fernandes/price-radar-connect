@@ -10,6 +10,8 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { brl, productById } from "@/lib/pr/data";
 import { usePR } from "@/lib/pr/store";
+import { signOutUser } from "@/lib/pr/auth";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/cliente/conta")({
   head: () => ({
@@ -31,6 +33,7 @@ const notificacoes = [
 
 function Conta() {
   const { userName, guest, demo, alerts, removeAlert, resetDemo } = usePR();
+  const navigate = useNavigate();
   return (
     <div className="space-y-6">
       <header>
@@ -99,7 +102,12 @@ function Conta() {
         </section>
       )}
 
-      <Button asChild variant="outline"><Link to="/"><LogOut className="size-4" /> Sair</Link></Button>
+      <Button
+        variant="outline"
+        onClick={async () => { await signOutUser(); toast.success("Sessão encerrada."); navigate({ to: "/" }); }}
+      >
+        <LogOut className="size-4" /> Sair
+      </Button>
     </div>
   );
 }
