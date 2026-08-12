@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Database, FileSpreadsheet, Plug } from "lucide-react";
+import { Database, FileSpreadsheet, Plug, RotateCcw } from "lucide-react";
+import { toast } from "sonner";
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
+  AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -31,7 +37,7 @@ const notificacoes = [
 ];
 
 function Config() {
-  const { publishPrices, publishAvailability, minMargin, set } = usePR();
+  const { publishPrices, publishAvailability, minMargin, set, resetDemo } = usePR();
   return (
     <div className="space-y-6">
       <header>
@@ -92,6 +98,32 @@ function Config() {
         <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
           {notificacoes.map((n) => <li key={n}>• {n}</li>)}
         </ul>
+      </section>
+
+      <section className="pr-card p-6">
+        <h2 className="font-bold">Ambiente de demonstração</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Restaure lista, favoritos, alertas e preferências para o estado original da demonstração.
+        </p>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="mt-4 gap-2">
+              <RotateCcw className="size-4" /> Resetar ambiente de demonstração
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Resetar ambiente de demonstração</AlertDialogTitle>
+              <AlertDialogDescription>Todos os dados demonstrativos serão restaurados.</AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={() => { resetDemo(); toast.success("Ambiente de demonstração restaurado."); }}>
+                Restaurar
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </section>
     </div>
   );
