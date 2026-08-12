@@ -71,7 +71,7 @@ export function PRProvider({ children }: { children: ReactNode }) {
     addAlert: (productId, target) => setState((s) => ({ ...s, alerts: [...s.alerts.filter((a) => a.productId !== productId), { productId, target }] })),
     removeAlert: (productId) => setState((s) => ({ ...s, alerts: s.alerts.filter((a) => a.productId !== productId) })),
     startDemo: (role) => setState(() => ({ ...initial, demo: true, guest: true, role, userName: role === "cliente" ? "Visitante (demo)" : "Mercado Aurora (demo)" })),
-    resetDemo: () => setState((s) => ({ ...initial, demo: true, guest: true, role: s.role, userName: s.userName })),
+    resetDemo: () => setState((s) => ({ ...initial, demo: s.demo, guest: s.guest, role: s.role, userName: s.userName })),
     exitDemo: () => setState(() => ({ ...initial })),
   }), [state, set]);
 
