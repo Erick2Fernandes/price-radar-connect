@@ -1,5 +1,4 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 export interface ListItem { productId: string; qty: number }
 export interface PriceAlert { productId: string; target: number }
@@ -55,20 +54,6 @@ export function PRProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* ignore */ }
   }, [state]);
-
-  useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_OUT") {
-        setState((s) => ({ ...s, guest: true, userName: "Visitante" }));
-        return;
-      }
-      if (session?.user) {
-        const meta = session.user.email?.split("@")[0] ?? "Usuário";
-        setState((s) => ({ ...s, guest: false, demo: false, userName: s.userName && !s.guest ? s.userName : meta }));
-      }
-    });
-    return () => sub.subscription.unsubscribe();
-  }, []);
 
   const set = useCallback(<K extends keyof State>(k: K, v: State[K]) => setState((s) => ({ ...s, [k]: v })), []);
 
