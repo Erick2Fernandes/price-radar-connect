@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Bell, LogOut, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { brl, productById } from "@/lib/pr/data";
 import { usePR } from "@/lib/pr/store";
 import { signOutUser } from "@/lib/pr/auth";
-import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/cliente/conta")({
   head: () => ({
